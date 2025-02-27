@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitOverride": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./front/src/*", "./bff/src/*"]
+    }
+  },
+  "include": ["front", "bff"],
+  "exclude": ["node_modules", "dist", "build", "coverage"]
+}

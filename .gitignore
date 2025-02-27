@@ -1,0 +1,14 @@
+# Node.js dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Monorepo tools
+.pnpm-store/
+.husky/
+lint-staged.config.js
+
+# Editor & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

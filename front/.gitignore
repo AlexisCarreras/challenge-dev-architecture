@@ -1,0 +1,27 @@
+# Node.js dependencies
+node_modules/
+dist/
+
+# Next.js build files
+.next/
+out/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Logs y reportes de errores
+*.log
+.npm-debug.log*
+.yarn-error.log
+pnpm-debug.log
+
+# Coverage
+coverage/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
