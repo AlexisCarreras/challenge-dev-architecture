@@ -9,6 +9,11 @@
     "bff"
   ],
   "scripts": {
+    "test:bff": "pnpm --filter bff test",
+    "test:front": "pnpm --filter front test",
+    "coverage:bff": "pnpm --filter bff run coverage:report",
+    "coverage:ui:bff": "pnpm --filter bff run coverage:ui",
+    "coverage:front": "pnpm --filter front test --coverage",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
     "format": "prettier --write .",
@@ -17,6 +22,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
+    "@types/jest": "^29.5.14",
     "@typescript-eslint/eslint-plugin": "^8.25.0",
     "@typescript-eslint/parser": "^8.25.0",
     "eslint": "^9.21.0",
@@ -24,8 +30,11 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "http-server": "^14.1.1",
     "husky": "^8.0.0",
+    "jest": "^29.7.0",
     "lint-staged": "^15.4.3",
-    "prettier": "^3.5.2"
+    "prettier": "^3.5.2",
+    "ts-jest": "^29.2.6"
   }
 }

@@ -7,7 +7,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["src/*"]
     },
     "lib": ["esnext"],
     "resolveJsonModule": true,
