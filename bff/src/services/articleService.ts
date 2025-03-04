@@ -1,18 +1,19 @@
-import axios from 'axios';
+import { fetchArticles } from '../repositories/articlesRepository';
+import { Article, TransformedArticleResponse } from '../types/articleTypes';
+import { filterArticles, processTags } from '../utils/articlesUtils';
+import { transformArticles } from '../utils/transformData';
 
-const ENDPOINT_URL = 'https://jrt2bb3b2nlkw5ozvfcld62wbe0pnifh.lambda-url.us-east-1.on.aws/';
-
-export const getFilteredArticles = async () => {
+export const getProcessedArticles = async (): Promise<TransformedArticleResponse> => {
   try {
-    const response = await axios.get(ENDPOINT_URL);
-    console.log('API response:', response.data);
+    const articles: Article[] = await fetchArticles();
+    const filteredArticles = filterArticles(articles);
+    const topTags = processTags(filteredArticles);
 
-    const filteredArticles = response.data.articles.filter(
-      (article: { subtype: string }) => article.subtype === '7',
-    );
-
-    return filteredArticles;
+    return {
+      articles: transformArticles(filteredArticles),
+      topTags,
+    };
   } catch (error) {
-    throw new Error('Error fetching articles from the API');
+    throw new Error('Error processing articles');
   }
 };
