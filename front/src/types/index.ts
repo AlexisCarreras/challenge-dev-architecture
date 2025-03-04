@@ -9,8 +9,7 @@ export interface Article {
   displayDate: string;
   imageUrl?: string;
   subtitle?: string;
-  tags: string[];
-  websiteUrl: string;
+  tags: TopTag[];
 }
 
 export type ArticleResponse = {
