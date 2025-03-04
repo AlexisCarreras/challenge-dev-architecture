@@ -1,4 +1,5 @@
-import { Article, ArticleResponse } from '@/types';
+import { Article } from '@/types';
+
 import { ArticleCard } from '../articleCard/ArticleCard';
 
 interface ArticleListProps {
@@ -16,4 +17,3 @@ const ArticleList: React.FC<ArticleListProps> = ({ articles }) => {
 };
 
 export default ArticleList;
-
