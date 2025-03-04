@@ -3,9 +3,10 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "baseUrl": ".",
+    "types": ["jest", "node", "@testing-library/jest-dom"],
     "paths": {
       "@/*": ["src/*"]
     },
@@ -16,6 +17,6 @@
     "isolatedModules": true,
     "strict": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "__mocks__/nextImageMock.js"],
   "exclude": ["node_modules", "dist", "build", ".next", "next-env.d.ts"]
 }
