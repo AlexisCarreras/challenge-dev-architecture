@@ -6,7 +6,7 @@
     "dev": "nodemon --exec ts-node src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "jest --config jest.config.js --coverage",
+    "test": "jest --config jest.config.js",
     "coverage:report": "jest --config jest.config.js --coverage",
     "serve-coverage": "npx http-server coverage/lcov-report -p 8080",
     "coverage:ui": "pnpm coverage:report && pnpm serve-coverage"

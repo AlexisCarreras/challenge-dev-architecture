@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest --config jest.config.js",
+    "coverage:report": "jest --config jest.config.js --coverage",
+    "serve-coverage": "npx http-server coverage/lcov-report -p 8081",
+    "coverage:ui": "pnpm coverage:report && pnpm serve-coverage"
   },
   "dependencies": {
     "axios": "^1.8.1",
@@ -15,8 +19,15 @@
     "react-query": "^3.39.3"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.13.5",
     "@types/react": "^19.0.10",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.2.6",
     "typescript": "^5.7.3"
   },
   "packageManager": "pnpm@10.5.1"
