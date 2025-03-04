@@ -1,5 +1,5 @@
-import { filterArticles } from '../src/utils/articlesUtils';
 import { Article } from '../src/types/articleTypes';
+import { filterArticles } from '../src/utils/articlesUtils';
 
 describe('filterArticles', () => {
   const articles: Article[] = [
@@ -52,7 +52,10 @@ describe('filterArticles', () => {
   });
 
   it('should return an empty array if no articles have subtype "7"', () => {
-    const noValidArticles = articles.map((article) => ({ ...article, subtype: '8' }));
+    const noValidArticles = articles.map((article) => ({
+      ...article,
+      subtype: '8',
+    }));
     const filtered = filterArticles(noValidArticles);
     expect(filtered).toEqual([]);
   });

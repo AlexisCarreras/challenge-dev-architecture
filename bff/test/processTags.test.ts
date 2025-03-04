@@ -1,5 +1,5 @@
-import { processTags } from '../src/utils/articlesUtils';
 import { Article } from '../src/types/articleTypes';
+import { processTags } from '../src/utils/articlesUtils';
 
 describe('processTags', () => {
   const articles: Article[] = [
@@ -50,7 +50,7 @@ describe('processTags', () => {
       expect.arrayContaining([
         { text: 'Tech', slug: 'tech' },
         { text: 'News', slug: 'news' },
-      ]),
+      ])
     );
   });
 
@@ -69,7 +69,10 @@ describe('processTags', () => {
   });
 
   it('should handle articles without tags correctly', () => {
-    const articlesWithoutTags = articles.map((article) => ({ ...article, taxonomy: {} }));
+    const articlesWithoutTags = articles.map((article) => ({
+      ...article,
+      taxonomy: {},
+    }));
     const result = processTags(articlesWithoutTags);
     expect(result).toEqual([]);
   });

@@ -1,5 +1,5 @@
-import { transformArticles } from '../src/utils/transformData';
 import { Article, TransformedArticle } from '../src/types/articleTypes';
+import { transformArticles } from '../src/utils/transformData';
 
 describe('transformArticles', () => {
   const sampleArticle: Article = {
@@ -28,8 +28,7 @@ describe('transformArticles', () => {
       displayDate: '2024-03-01T12:00:00Z',
       imageUrl: 'http://example.com/sample.jpg',
       subtitle: 'Sample Subtitle',
-      tags: ['Sample Tag'],
-      websiteUrl: '/sample-url',
+      tags: [{ slug: 'sample-tag', text: 'Sample Tag' }],
     };
 
     expect(transformed).toEqual([expected]);

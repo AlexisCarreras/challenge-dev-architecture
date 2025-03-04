@@ -1,7 +1,11 @@
 import { fetchArticles } from '../src/repositories/articlesRepository';
 import { getProcessedArticles } from '../src/services/articleService';
 import { Article, TransformedArticleResponse } from '../src/types/articleTypes';
-import { filterArticles, processTags } from '../src/utils/articlesUtils';
+import {
+  filterArticles,
+  filterByTag,
+  processTags,
+} from '../src/utils/articlesUtils';
 import { transformArticles } from '../src/utils/transformData';
 
 jest.mock('../src/repositories/articlesRepository');
@@ -16,7 +20,9 @@ describe('getProcessedArticles', () => {
       headlines: { basic: 'Test Headline' },
       promo_items: {
         basic: {
-          resized_urls: [{ option: { media: 'image' }, resizedUrl: 'http://image.com' }],
+          resized_urls: [
+            { option: { media: 'image' }, resizedUrl: 'http://image.com' },
+          ],
           subtitle: 'Test Subtitle',
           type: 'image',
           url: 'http://image.com',
@@ -35,12 +41,11 @@ describe('getProcessedArticles', () => {
       displayDate: '2023-08-05T10:00:00Z',
       imageUrl: 'http://image.com',
       subtitle: 'Test Subtitle',
-      tags: ['Tag 1'],
-      websiteUrl: 'http://example.com',
+      tags: [{ slug: 'sample-tag', text: 'Sample Tag' }],
     },
   ];
 
-  const topTags = [{ text: 'Tag 1', slug: 'tag-1' }];
+  const topTags = [{ slug: 'tag-1', text: 'Tag 1' }];
 
   beforeEach(() => {
     jest.resetAllMocks();
@@ -49,6 +54,7 @@ describe('getProcessedArticles', () => {
   it('should return transformed articles and top tags', async () => {
     (fetchArticles as jest.Mock).mockResolvedValue(mockArticles);
     (filterArticles as jest.Mock).mockReturnValue(mockArticles);
+    (filterByTag as jest.Mock).mockReturnValue(mockArticles);
     (processTags as jest.Mock).mockReturnValue(topTags);
     (transformArticles as jest.Mock).mockReturnValue(transformedArticles);
 
@@ -57,6 +63,7 @@ describe('getProcessedArticles', () => {
     expect(result).toEqual({ articles: transformedArticles, topTags });
     expect(fetchArticles).toHaveBeenCalledTimes(1);
     expect(filterArticles).toHaveBeenCalledWith(mockArticles);
+    expect(filterByTag).toHaveBeenCalledWith(mockArticles, undefined);
     expect(processTags).toHaveBeenCalledWith(mockArticles);
     expect(transformArticles).toHaveBeenCalledWith(mockArticles);
   });
@@ -64,6 +71,8 @@ describe('getProcessedArticles', () => {
   it('should throw an error if fetchArticles fails', async () => {
     (fetchArticles as jest.Mock).mockRejectedValue(new Error('Fetch error'));
 
-    await expect(getProcessedArticles()).rejects.toThrow('Error processing articles');
+    await expect(getProcessedArticles()).rejects.toThrow(
+      'Error processing articles'
+    );
   });
 });

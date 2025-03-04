@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { fetchArticles } from '../src/repositories/articlesRepository';
 import { Article, FetchArticlesResponse } from '../src/types/articleTypes';
 
@@ -14,7 +15,12 @@ describe('fetchArticles', () => {
       headlines: { basic: 'Article 1' },
       promo_items: {
         basic: {
-          resized_urls: [{ option: { media: 'image' }, resizedUrl: 'https://image.url/1.jpg' }],
+          resized_urls: [
+            {
+              option: { media: 'image' },
+              resizedUrl: 'https://image.url/1.jpg',
+            },
+          ],
           subtitle: 'Image 1',
           type: 'image',
           url: 'https://image.url/1.jpg',
