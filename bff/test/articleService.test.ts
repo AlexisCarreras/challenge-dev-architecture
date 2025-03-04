@@ -1,43 +1,69 @@
-import axios from 'axios';
-import { getFilteredArticles } from '../src/services/articleService';
-import { mockArticles } from 'bff/mock/articleMocks';
+import { fetchArticles } from '../src/repositories/articlesRepository';
+import { getProcessedArticles } from '../src/services/articleService';
+import { Article, TransformedArticleResponse } from '../src/types/articleTypes';
+import { filterArticles, processTags } from '../src/utils/articlesUtils';
+import { transformArticles } from '../src/utils/transformData';
 
-jest.mock('axios');
+jest.mock('../src/repositories/articlesRepository');
+jest.mock('../src/utils/articlesUtils');
+jest.mock('../src/utils/transformData');
 
-describe('getFilteredArticles', () => {
-  it('should return filtered articles with subtype 7', async () => {
-    (axios.get as jest.Mock).mockResolvedValueOnce({ data: { articles: mockArticles } });
-
-    const result = await getFilteredArticles();
-
-    expect(result).toEqual([
-      {
-        _id: 'ZNJ67CCHJNAEBE6IUETWOXMNFM',
-        display_date: '2019-12-06T17:50:17.735Z',
-        headlines: { basic: 'Arroz con Leche' },
-        promo_items: {
-          basic: {
-            resized_urls: [
-              { option: { media: '(min-width: 64em)' }, resizedUrl: 'http://demo.com/image1.jpg' },
-              { option: { media: '(min-width: 48em)' }, resizedUrl: 'http://demo.com/image2.jpg' },
-            ],
-            subtitle: 'Gentileza: Malcriado-Entre fuegos y vinos',
-            type: 'image',
-            url: 'http://demo.com/main_image.jpg',
-          },
+describe('getProcessedArticles', () => {
+  const mockArticles: Article[] = [
+    {
+      _id: '1',
+      display_date: '2023-08-05T10:00:00Z',
+      headlines: { basic: 'Test Headline' },
+      promo_items: {
+        basic: {
+          resized_urls: [{ option: { media: 'image' }, resizedUrl: 'http://image.com' }],
+          subtitle: 'Test Subtitle',
+          type: 'image',
+          url: 'http://image.com',
         },
-        subtype: '7',
-        taxonomy: {
-          tags: [{ slug: 'leche-tid47244', text: 'Leche' }],
-        },
-        website_url: '/recetas/postres/arroz-con-leche-nid29102019-6/',
       },
-    ]);
+      subtype: 'test',
+      taxonomy: { tags: [{ slug: 'tag-1', text: 'Tag 1' }] },
+      website_url: 'http://example.com',
+    },
+  ];
+
+  const transformedArticles = [
+    {
+      id: '1',
+      headline: 'Test Headline',
+      displayDate: '2023-08-05T10:00:00Z',
+      imageUrl: 'http://image.com',
+      subtitle: 'Test Subtitle',
+      tags: ['Tag 1'],
+      websiteUrl: 'http://example.com',
+    },
+  ];
+
+  const topTags = [{ text: 'Tag 1', slug: 'tag-1' }];
+
+  beforeEach(() => {
+    jest.resetAllMocks();
   });
 
-  it('should throw an error if API request fails', async () => {
-    (axios.get as jest.Mock).mockRejectedValueOnce(new Error('API request failed'));
+  it('should return transformed articles and top tags', async () => {
+    (fetchArticles as jest.Mock).mockResolvedValue(mockArticles);
+    (filterArticles as jest.Mock).mockReturnValue(mockArticles);
+    (processTags as jest.Mock).mockReturnValue(topTags);
+    (transformArticles as jest.Mock).mockReturnValue(transformedArticles);
 
-    await expect(getFilteredArticles()).rejects.toThrow('Error fetching articles from the API');
+    const result: TransformedArticleResponse = await getProcessedArticles();
+
+    expect(result).toEqual({ articles: transformedArticles, topTags });
+    expect(fetchArticles).toHaveBeenCalledTimes(1);
+    expect(filterArticles).toHaveBeenCalledWith(mockArticles);
+    expect(processTags).toHaveBeenCalledWith(mockArticles);
+    expect(transformArticles).toHaveBeenCalledWith(mockArticles);
+  });
+
+  it('should throw an error if fetchArticles fails', async () => {
+    (fetchArticles as jest.Mock).mockRejectedValue(new Error('Fetch error'));
+
+    await expect(getProcessedArticles()).rejects.toThrow('Error processing articles');
   });
 });
