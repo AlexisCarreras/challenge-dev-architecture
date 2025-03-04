@@ -5,11 +5,12 @@ import { TransformedArticleResponse } from '../types/articleTypes';
 
 export const getArticlesController = async (req: Request, res: Response) => {
   try {
-    const articles: TransformedArticleResponse  = await getProcessedArticles();
+    const tagSlug = req.query.tag ? String(req.query.tag) : undefined;
+    const articles: TransformedArticleResponse =
+      await getProcessedArticles(tagSlug);
 
     res.json(articles);
   } catch (error) {
-    console.error('Error in getArticlesController:', error);
     res.status(500).json({
       message: 'Error fetching filtered articles',
       error: error instanceof Error ? error.message : error,

@@ -44,8 +44,7 @@ export interface TransformedArticle {
   displayDate: string;
   imageUrl?: string;
   subtitle?: string;
-  tags: string[];
-  websiteUrl: string;
+  tags: Tag[];
 }
 
 export interface TransformedArticleResponse {

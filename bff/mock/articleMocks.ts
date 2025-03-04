@@ -6,8 +6,14 @@ export const mockArticles = [
     promo_items: {
       basic: {
         resized_urls: [
-          { option: { media: '(min-width: 64em)' }, resizedUrl: 'http://demo.com/image1.jpg' },
-          { option: { media: '(min-width: 48em)' }, resizedUrl: 'http://demo.com/image2.jpg' },
+          {
+            option: { media: '(min-width: 64em)' },
+            resizedUrl: 'http://demo.com/image1.jpg',
+          },
+          {
+            option: { media: '(min-width: 48em)' },
+            resizedUrl: 'http://demo.com/image2.jpg',
+          },
         ],
         subtitle: 'Gentileza: Malcriado-Entre fuegos y vinos',
         type: 'image',
@@ -27,7 +33,10 @@ export const mockArticles = [
     promo_items: {
       basic: {
         resized_urls: [
-          { option: { media: '(min-width: 64em)' }, resizedUrl: 'http://demo.com/flan.jpg' },
+          {
+            option: { media: '(min-width: 64em)' },
+            resizedUrl: 'http://demo.com/flan.jpg',
+          },
         ],
         subtitle: 'Foto de Flan',
         type: 'image',

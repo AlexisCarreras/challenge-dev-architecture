@@ -1,19 +1,27 @@
 import { fetchArticles } from '../repositories/articlesRepository';
 import { Article, TransformedArticleResponse } from '../types/articleTypes';
-import { filterArticles, processTags } from '../utils/articlesUtils';
+import {
+  filterArticles,
+  filterByTag,
+  processTags,
+} from '../utils/articlesUtils';
 import { transformArticles } from '../utils/transformData';
 
-export const getProcessedArticles = async (): Promise<TransformedArticleResponse> => {
+export const getProcessedArticles = async (
+  tagSlug?: string
+): Promise<TransformedArticleResponse> => {
   try {
     const articles: Article[] = await fetchArticles();
     const filteredArticles = filterArticles(articles);
-    const topTags = processTags(filteredArticles);
+    const tagFilteredArticles = filterByTag(filteredArticles, tagSlug);
+
+    const topTags = processTags(tagFilteredArticles);
 
     return {
-      articles: transformArticles(filteredArticles),
+      articles: transformArticles(tagFilteredArticles),
       topTags,
     };
   } catch (error) {
-    throw new Error('Error processing articles');
+    throw new Error(`Error processing articles: ${error}`);
   }
 };

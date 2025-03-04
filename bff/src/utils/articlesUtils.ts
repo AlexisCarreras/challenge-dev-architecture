@@ -4,6 +4,19 @@ export const filterArticles = (articles: Article[]): Article[] => {
   return articles.filter((article) => article.subtype === '7').slice(0, 30);
 };
 
+export const filterByTag = (
+  articles: Article[],
+  tagSlug?: string
+): Article[] => {
+  if (!tagSlug) return articles;
+
+  return articles.filter(
+    (article) =>
+      Array.isArray(article.taxonomy?.tags) &&
+      article.taxonomy.tags.some((tag) => tag.slug === tagSlug)
+  );
+};
+
 export const processTags = (articles: Article[]): TopTag[] => {
   const tagCount: Record<string, { text: string; count: number }> = {};
 
@@ -16,7 +29,6 @@ export const processTags = (articles: Article[]): TopTag[] => {
       }
     });
   });
-
   return Object.entries(tagCount)
     .sort((a, b) => b[1].count - a[1].count)
     .slice(0, 10)
