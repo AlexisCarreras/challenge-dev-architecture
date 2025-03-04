@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 
-import { getFilteredArticles } from '../services/articleService';
+import { getProcessedArticles } from '../services/articleService';
+import { TransformedArticleResponse } from '../types/articleTypes';
 
 export const getArticlesController = async (req: Request, res: Response) => {
   try {
-    const articles = await getFilteredArticles();
+    const articles: TransformedArticleResponse  = await getProcessedArticles();
 
     res.json(articles);
   } catch (error) {
