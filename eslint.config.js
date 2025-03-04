@@ -25,23 +25,18 @@ export default [
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unused-vars": ["warn"],
       
-      "prettier/prettier": "error",
+      "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
       "no-console": "warn",
       "no-unused-vars": "off",
 
-      "simple-import-sort/imports": "warn",
-      "simple-import-sort/exports": "warn",
-      "import/order": [
-        "warn",
-        {
-          "groups": [
-            ["builtin", "external"],
-            ["internal"],
-            ["parent", "sibling", "index"]
-          ],
-          "newlines-between": "always"
-        }
-      ]
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "import/order": "off"
     },
   }
 ];
