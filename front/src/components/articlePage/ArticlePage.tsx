@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import styles from './ArticlePage.module.css';
 
 import Layout from '@/components/layout/Layout';
 import { ArticleResponse } from '@/types';
@@ -10,11 +11,19 @@ const TagList = dynamic(() => import('../tagList/TagList'), {
   loading: () => <div>Loading tags...</div>,
 });
 
-const ArticlePage = ({ articles, topTags }: ArticleResponse) => {
+interface ArticlePageProps extends ArticleResponse {
+  selectedTag?: string;
+}
+
+const ArticlePage = ({ articles, topTags, selectedTag }: ArticlePageProps) => {
   return (
     <Layout>
-      <TagList tags={topTags} />
-      <ArticleList articles={articles} />
+      <div className={styles.container}>
+        <div className={styles.tagList}>
+          <TagList tags={topTags} selectedTag={selectedTag} />
+        </div>
+        <ArticleList articles={articles} />
+      </div>
     </Layout>
   );
 };

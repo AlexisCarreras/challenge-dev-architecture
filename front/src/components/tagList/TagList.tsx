@@ -1,30 +1,26 @@
 import Link from 'next/link';
+import styles from './TagList.module.css';
 
 import { TopTag } from '@/types';
 
 interface TagListProps {
   tags: TopTag[];
+  selectedTag?: string;
 }
 
-const TagList: React.FC<TagListProps> = ({ tags }) => {
+const TagList: React.FC<TagListProps> = ({ tags, selectedTag }) => {
   return (
-    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+    <div className={styles.tagList}>
       {tags.map((tag) => (
         <Link
+          className={`${styles.tag} ${
+            selectedTag === tag.slug ? styles.selected : ''
+          }`}
           key={tag.slug}
           href={`/tema/${tag.slug.toLowerCase().replace(/\s+/g, '-')}`}
           passHref
         >
-          <span
-            style={{
-              cursor: 'pointer',
-              padding: '5px 10px',
-              border: '1px solid #ccc',
-              borderRadius: '5px',
-            }}
-          >
-            {tag.text}
-          </span>
+          {tag.text}
         </Link>
       ))}
     </div>
