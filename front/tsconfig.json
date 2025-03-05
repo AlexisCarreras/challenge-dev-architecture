@@ -6,17 +6,37 @@
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "baseUrl": ".",
-    "types": ["jest", "node", "@testing-library/jest-dom"],
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/jest-dom"
+    ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "noEmit": true,
     "incremental": true,
     "isolatedModules": true,
     "strict": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "__mocks__/nextImageMock.js"],
-  "exclude": ["node_modules", "dist", "build", ".next", "next-env.d.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "__mocks__/nextImageMock.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".next",
+    "next-env.d.ts"
+  ]
 }
