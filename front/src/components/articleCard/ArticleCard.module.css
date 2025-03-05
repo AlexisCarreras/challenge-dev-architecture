@@ -48,21 +48,3 @@
   color: #9e9e9e;
   margin: 0;
 }
-
-@media (min-width: 900px) {
-  .card {
-    width: calc(33.333% - 16px);
-  }
-}
-
-@media (min-width: 600px) and (max-width: 899px) {
-  .card {
-    width: calc(50% - 8px);
-  }
-}
-
-@media (max-width: 599px) {
-  .card {
-    width: 100%;
-  }
-}

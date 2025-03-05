@@ -6,10 +6,20 @@
   padding: 0 16px;
 }
 
+.articleCardWrapper {
+  flex: 1 1 300px;
+  max-width: 300px;
+}
+
 @media (min-width: 900px) {
   .articleList {
     gap: 24px;
     padding: 0 24px;
+  }
+
+  .articleCardWrapper {
+    flex: 1 1 300px;
+    max-width: 300px;
   }
 }
 
@@ -18,11 +28,21 @@
     gap: 16px;
     padding: 0 16px;
   }
+
+  .articleCardWrapper {
+    flex: 1 1 calc(50% - 32px);
+    max-width: calc(50% - 32px);
+  }
 }
 
 @media (max-width: 599px) {
   .articleList {
     gap: 12px;
     padding: 0 12px;
+  }
+
+  .articleCardWrapper {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 }
