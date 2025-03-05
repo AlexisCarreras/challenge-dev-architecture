@@ -7,8 +7,8 @@ export const fetchArticles = async (
 ): Promise<ArticleResponse> => {
   try {
     const url = tagSlug
-      ? `${process.env.API_URL}/api/articles?tag=${tagSlug}`
-      : `${process.env.API_URL}/api/articles`;
+      ? `${process.env.NEXT_PUBLIC_API_URL}/api/articles?tag=${tagSlug}`
+      : `${process.env.NEXT_PUBLIC_API_URL}/api/articles`;
     const res = await axios.get(url);
     return res.data;
   } catch {
