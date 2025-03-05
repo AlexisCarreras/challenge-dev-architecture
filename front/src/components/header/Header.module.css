@@ -1,0 +1,30 @@
+.header {
+  background-color: #e65100;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .header {
+    padding: 16px 24px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .header {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 599px) {
+  .header {
+    padding: 16px 12px;
+  }
+}
