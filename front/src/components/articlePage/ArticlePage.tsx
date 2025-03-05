@@ -1,8 +1,9 @@
 import dynamic from 'next/dynamic';
-import styles from './ArticlePage.module.css';
 
 import Layout from '@/components/layout/Layout';
 import { ArticleResponse } from '@/types';
+
+import styles from './ArticlePage.module.css';
 
 const ArticleList = dynamic(() => import('../articleList/ArticleList'), {
   loading: () => <div>Loading articles...</div>,

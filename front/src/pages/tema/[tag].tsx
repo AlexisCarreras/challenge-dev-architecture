@@ -12,7 +12,9 @@ export default function TagPage(props: TagPageProps) {
   return <ArticlePage {...props} />;
 }
 
-export const getServerSideProps: GetServerSideProps<TagPageProps> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<TagPageProps> = async ({
+  params,
+}) => {
   const tagSlug = params?.tag as string;
 
   const data = await fetchArticles(tagSlug);

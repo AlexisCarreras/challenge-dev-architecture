@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import styles from './TagList.module.css';
 
 import { TopTag } from '@/types';
+
+import styles from './TagList.module.css';
 
 interface TagListProps {
   tags: TopTag[];

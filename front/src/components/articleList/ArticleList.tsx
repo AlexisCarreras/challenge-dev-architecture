@@ -1,8 +1,9 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+
 import { Article } from '@/types';
-import styles from './ArticleList.module.css';
 
 import { ArticleCard } from '../articleCard/ArticleCard';
+import styles from './ArticleList.module.css';
 
 interface ArticleListProps {
   articles: Article[];
