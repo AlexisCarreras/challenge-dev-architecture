@@ -4,12 +4,16 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^next/image$': '<rootDir>/__mocks__/nextImageMock.js',
+    '\\.(css|less|scss|sass)$': '<rootDir>/__mocks__/styleMock.js',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': 'ts-jest',
   },
-  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(module-to-transform)/)'],
+  transformIgnorePatterns: [
+    '/node_modules/',
+    '\\.css$',
+  ],
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coverageReporters: ['lcov', 'text'],
