@@ -4,17 +4,24 @@ import ArticlePage from '@/components/articlePage/ArticlePage';
 import { fetchArticles } from '@/services/articleService';
 import { ArticleResponse } from '@/types';
 
-export default function TagPage(props: ArticleResponse) {
+interface TagPageProps extends ArticleResponse {
+  selectedTag: string;
+}
+
+export default function TagPage(props: TagPageProps) {
   return <ArticlePage {...props} />;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<TagPageProps> = async ({ params }) => {
   const tagSlug = params?.tag as string;
 
   const data = await fetchArticles(tagSlug);
 
   return {
-    props: data,
+    props: {
+      ...data,
+      selectedTag: tagSlug,
+    },
     notFound: data.articles.length === 0,
   };
 };

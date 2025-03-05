@@ -5,7 +5,7 @@ import { fetchArticles } from '@/services/articleService';
 import { ArticleResponse } from '@/types';
 
 export default function Home(props: ArticleResponse) {
-  return <ArticlePage {...props} />;
+  return <ArticlePage {...props} selectedTag={undefined} />;
 }
 
 export const getServerSideProps: GetServerSideProps<
