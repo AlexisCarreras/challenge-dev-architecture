@@ -1,6 +1,6 @@
 import cors from 'cors';
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { Request, Response } from 'express';
 
 import articleRoutes from './routes/articleRoutes';
 
@@ -18,10 +18,10 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-app.use(cors());
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('BFF is running! 🚀');
 });
 
