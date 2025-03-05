@@ -70,6 +70,19 @@ El proyecto está organizado como un **monorepo** utilizando `pnpm workspaces`, 
 
 - Se implementaron **tests unitarios** para componentes críticos y lógica de negocio, con una cobertura del 100% tanto en el frontend como en el BFF.
 
+### **6. Conventional Commits con Husky**
+
+- Se configuró **Husky** junto con **Commitlint** para asegurar que los commits sigan el estándar de **Conventional Commits**. Esto mejora la claridad del historial de commits y facilita la generación automática de changelogs.
+- Los mensajes de commit deben seguir el formato:
+  ```
+  tipo(ámbito): descripción
+  ```
+  Ejemplo:
+  ```
+  feat(article): add article filtering by tag
+  fix(bff): resolve issue with tag aggregation
+  ```
+
 ---
 
 ## **Requisitos Cumplidos**
@@ -195,12 +208,12 @@ El proyecto está desplegado en **Render**:
 
 ## **Comandos Principales**
 
-| Comando                     | Descripción                                      |
-|-----------------------------|--------------------------------------------------|
-| `pnpm lint --fix`           | Corrige errores de linteo en todo el monorepo.   |
-| `pnpm --filter bff dev`     | Ejecuta el BFF localmente.                      |
-| `pnpm --filter front dev`   | Ejecuta el Frontend localmente.                 |
-| `docker-compose up --build` | Levanta el proyecto con Docker.                 |
-| `docker-compose down`       | Detiene los contenedores de Docker.             |
+| Comando                     | Descripción                                    |
+| --------------------------- | ---------------------------------------------- |
+| `pnpm lint --fix`           | Corrige errores de linteo en todo el monorepo. |
+| `pnpm --filter bff dev`     | Ejecuta el BFF localmente.                     |
+| `pnpm --filter front dev`   | Ejecuta el Frontend localmente.                |
+| `docker-compose up --build` | Levanta el proyecto con Docker.                |
+| `docker-compose down`       | Detiene los contenedores de Docker.            |
 
 ---
