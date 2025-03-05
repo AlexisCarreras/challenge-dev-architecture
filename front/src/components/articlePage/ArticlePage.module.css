@@ -9,6 +9,34 @@
   width: 100%;
 }
 
+.skeletonLoader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeletonCard {
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.skeletonImage {
+  width: 100%;
+  height: 150px;
+  background: #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.skeletonText {
+  width: 80%;
+  height: 16px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
 @media (min-width: 900px) {
   .container {
     padding: 24px;
